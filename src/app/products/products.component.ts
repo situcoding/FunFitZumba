@@ -15,4 +15,6 @@ export class ProductsComponent {
     new Product(501,"Samsung Fold", 73000, 4.3),
   ];
 
+  showProducts = false;
+
 }
