@@ -1,8 +1,10 @@
 <nav>
     <ul>
-        <li><a routerLink="/home">Home</a></li>
+        <!-- <li><a routerLink="/home">Home</a></li>-->
         <li><a routerLink="/products">Products</a></li>
-        <li><a routerLink="/profile">Profile</a></li>
+        <li><a routerLink="/profile" [queryParams]="{ name: 'John Watson', email: 'john.watson@example.com'}">Profile</a></li>
+        <li><a routerLink="/posts">Posts</a></li>
     </ul>
 </nav>
+<app-home [name]="appName"></app-home>
 <router-outlet></router-outlet>

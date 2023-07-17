@@ -1,11 +1,14 @@
 export class Product {
 
-    pid: number;
-    name: string;
-    price: number;
-    ratings: number;
+    pid: number | null | undefined;
+    name: string | null | undefined;
+    price: number | null | undefined;
+    ratings: number | null | undefined;
 
-    constructor(pid: number, name: string, price: number, ratings: number){
+    constructor(pid: number | null | undefined, 
+                name: string | null | undefined, 
+                price: number | null | undefined, 
+                ratings: number | null | undefined){
         this.pid = pid;
         this.name = name;
         this.price = price;

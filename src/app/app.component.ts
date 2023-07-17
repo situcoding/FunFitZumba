@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'estore - shopping made easy';
+  appName = 'estore - shop with ease like never before';
 }
