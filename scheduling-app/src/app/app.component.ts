@@ -1,19 +1,12 @@
 import { Component } from '@angular/core';
-import { AdminUserService } from 'src/app/services/admin-user.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './admin/registration/registration.component.html'
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']  // Assuming you might also have styles specifically for the root component
 })
 export class AppComponent {
+  title = 'scheduling-app';
 
-  constructor(private adminUserService: AdminUserService) { }
-
-  onFormSubmit(data: any) {
-    this.adminUserService.registerAdminUser(data).subscribe(response => {
-      console.log('Registration successful', response);
-    }, error => {
-      console.log('Error', error);
-    });
-  }
+  constructor() { }
 }

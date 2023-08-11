@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { CreateComponent } from './create/create.component';
 import { ListComponent } from './list/list.component';
 import { DetailComponent } from './detail/detail.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +15,10 @@ import { DetailComponent } from './detail/detail.component';
     DetailComponent
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    FormsModule,
+    RouterModule
+  ],
+  exports: [CreateComponent]
 })
 export class ClientModule { }

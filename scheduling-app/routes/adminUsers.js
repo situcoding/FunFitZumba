@@ -4,25 +4,42 @@ const AdminUser = require('../models/admin-user-model');
 
 router.post('/register', async (req, res) => {
     try {
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(req.body.password, salt);
+        
         const newUser = new AdminUser({
             username: req.body.username,
-            password: req.body.password // You should hash passwords before saving. Consider bcrypt.
+            password: hashedPassword
         });
+        
         const savedUser = await newUser.save();
-        res.json(savedUser);
+        res.status(201).json({ message: 'User registered successfully', userId: savedUser._id });
     } catch (err) {
-        res.status(400).json(err);
+        console.error(err);  // Log the error
+        res.status(500).json({ message: 'Server error' });
     }
 });
+
 router.post('/login', async (req, res) => {
     try {
         const user = await AdminUser.findOne({ username: req.body.username });
-        if (!user || user.password !== req.body.password) {  // Hashed passwords would require a check with bcrypt.
-            return res.status(400).json("Invalid credentials.");
+        
+        if (!user) {
+            return res.status(400).json({ message: 'Invalid credentials' });
         }
-        res.json("Logged in successfully");  // Usually, you'd send back a token or set a session.
+        
+        const validPass = await bcrypt.compare(req.body.password, user.password);
+        
+        if (!validPass) {
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
+
+        const token = jwt.sign({ _id: user._id }, 'YOUR_SECRET_KEY');  // Replace 'YOUR_SECRET_KEY' with an actual secret
+        res.header('auth-token', token).json({ message: 'Logged in successfully', token: token });
+        
     } catch (err) {
-        res.status(500).json(err);
+        console.error(err);  // Log the error
+        res.status(500).json({ message: 'Server error' });
     }
 });
 router.put('/:userId', async (req, res) => {

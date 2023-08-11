@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { AdminUserService } from 'src/app/services/admin-user.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from "@angular/forms";
+import {NgModule} from "@angular/core"
 
 @Component({
   selector: 'app-admin-login',
@@ -30,3 +33,19 @@ export class AdminLoginComponent {
     });
   }
 }
+
+@NgModule({
+  declarations: [
+    AdminLoginComponent,
+   
+  ],
+  imports: [
+    CommonModule,
+    FormsModule  // Ensure FormsModule is added to the imports array
+  ],
+  exports: [
+    AdminLoginComponent,
+    
+  ]
+})
+export class AdminModule { }

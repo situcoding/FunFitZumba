@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-register',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./registration.component.scss']
 })
 export class AdminRegisterComponent {
-  // You can add any additional logic, properties or methods you need here
+  adminData = {
+    username: '',
+    email: '',
+    password: ''
+  };
+
+  onFormSubmit(registerForm: NgForm) {
+    if (registerForm.valid) {
+      console.log(this.adminData); // For demonstration purposes
+      // Your form submission logic here
+    }
+  }
 }

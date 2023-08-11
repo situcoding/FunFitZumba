@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { ListComponent } from './list/list.component';
 import { DetailComponent } from './detail/detail.component';
+import { FormsModule } from "@angular/forms";
 
 
 
@@ -13,7 +14,8 @@ import { DetailComponent } from './detail/detail.component';
     DetailComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class MeetingModule { }
