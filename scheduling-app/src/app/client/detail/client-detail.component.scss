@@ -1,0 +1,33 @@
+.client-detail-container {
+    padding: 2em;
+    background-color: #f9f9f9;
+  }
+  
+  h2 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5em;
+  }
+  
+  .client-basic-info,
+  .upcoming-meetings,
+  .past-meetings {
+    background-color: #fff;
+    padding: 1em;
+    margin-bottom: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    padding: 1em;
+    border-bottom: 1px solid #eee;
+  
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  

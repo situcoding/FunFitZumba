@@ -1,23 +1,30 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { SharedModule } from 'shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule for form handling
+
+import { AppComponent } from './app.component';
+import { ManageScheduleComponent } from './admin/manage-schedule/manage-schedule.component'; // Replace with your actual component path
+import { AvailabilityService } from './services/availability.service';
+import { MeetingService } from './services/meeting.service'; // Import MeetingService
 
 @NgModule({
   declarations: [
     AppComponent,
-    
+    ManageScheduleComponent, // Declare your component here
+    // Other components
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    ReactiveFormsModule, // Add ReactiveFormsModule to imports
+    // Other modules
   ],
-  providers: [],
+  providers: [
+    AvailabilityService,
+    MeetingService, // Add MeetingService to providers
+    // Other services and providers
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

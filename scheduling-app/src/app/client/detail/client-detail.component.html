@@ -1,0 +1,46 @@
+<p>detail works!</p>
+
+<div class="client-detail-container">
+    
+
+    <!-- Client Basic Details -->
+    <div *ngIf="client">
+        <h2>Client Detail</h2>
+        
+        <p><strong>Name:</strong> {{ client.first_name }} {{ client.last_name }}</p>
+        <p><strong>Address:</strong> {{ client.street_address }}, {{ client.city }}, {{ client.state_province }} {{ client.postal_code }}, {{ client.country }}</p>
+        <p><strong>Email:</strong> {{ client.email }}</p>
+        <p><strong>Phone:</strong> {{ client.phone }}</p>
+        <p><strong>Created At:</strong> {{ client.created_at | date }}</p>
+      </div>
+      
+    
+    <!-- Upcoming Meetings -->
+    <div class="upcoming-meetings">
+      <h2>Upcoming Meetings</h2>
+      <ul>
+        <li *ngFor="let meeting of upcomingMeetings">
+          <p><strong>Date:</strong> {{ meeting.date | date }}</p>
+          <p><strong>Time:</strong> {{ meeting.time }}</p>
+          <p><strong>Location:</strong> {{ meeting.location }}</p>
+          <p><strong>Subject:</strong> {{ meeting.subject }}</p>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Past Meetings -->
+    <div class="past-meetings">
+      <h2>Past Meetings</h2>
+      <ul>
+        <li *ngFor="let meeting of pastMeetings">
+          <p><strong>Date:</strong> {{ meeting.date | date }}</p>
+          <p><strong>Time:</strong> {{ meeting.time }}</p>
+          <p><strong>Location:</strong> {{ meeting.location }}</p>
+          <p><strong>Subject:</strong> {{ meeting.subject }}</p>
+          <p><strong>Notes:</strong> {{ meeting.notes }}</p>
+        </li>
+      </ul>
+    </div>
+  
+  </div>
+  

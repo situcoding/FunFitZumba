@@ -1,24 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const mysql = require('mysql2');
 
 const app = express();
 
-// Middleware
-app.use(cors()); // Allow cross-origin requests
-app.use(bodyParser.json());
+// Routers
+const meetingsRouter = require('./routes/meetings');
+const adminUserRoutes = require('./routes/adminUsers');
 
-const PORT = 3000;
-
-app.get('/', (req, res) => {
-    res.send('Scheduling Backend is up and running!');
-});
-
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
-const mysql = require('mysql2');
-
+// Database setup
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'your_username',
@@ -30,6 +21,23 @@ db.connect((error) => {
     if (error) throw error;
     console.log('Connected to the SchedulingDB.');
 });
-const adminUserRoutes = require('./routes/adminUsers');
 
+// Middleware
+app.use(cors());  // Allow cross-origin requests
+app.use(bodyParser.json());
+
+// Use Routers
+app.use('/api/meetings', meetingsRouter); // I've prefixed it with '/api' for clearer API paths
 app.use('/admin-users', adminUserRoutes);
+
+// Root response
+app.get('/', (req, res) => {
+    res.send('Scheduling Backend is up and running!');
+});
+
+const PORT = 3000;
+
+// Start server
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});

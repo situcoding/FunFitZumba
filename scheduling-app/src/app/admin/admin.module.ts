@@ -1,29 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Import FormsModule for template-driven forms
-import { RouterModule } from '@angular/router';
-import { AdminLoginComponent } from './login/login.component';
-import { AdminRegisterComponent } from './registration/registration.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+
+import { AdminLoginComponent } from './login/admin-login.component';
+import { AdminRegisterComponent } from './registration/admin-registration.component';
+import { ManageScheduleComponent } from './manage-schedule/manage-schedule.component';
+
+const routes: Routes = [
+  // Define your admin-related routes here
+];
 
 @NgModule({
   declarations: [
     AdminLoginComponent,
-    AdminRegisterComponent
-    // Other components
+    AdminRegisterComponent,
+    ManageScheduleComponent,
+    ViewMeetingsComponent
   ],
   imports: [
     CommonModule,
-    FormsModule, // Include FormsModule here for template-driven forms
-    RouterModule.forChild([
-      // Define your admin routes here
-      { path: 'admin/login', component: AdminLoginComponent },
-      { path: 'admin/register', component: AdminRegisterComponent }
-         
-      // Other routes
-    ])
+    FormsModule,
+    RouterModule.forChild(routes)
   ],
-  providers: [
-    // Any services or providers needed by this module
-  ]
+  exports: [] // Export components if needed by other modules
 })
 export class AdminModule { }

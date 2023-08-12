@@ -1,9 +1,7 @@
-// routes/clients.js
-app.post('/clients', (req, res) => {
-    const newClient = req.body;
-    const query = "INSERT INTO clients SET ?";
-    db.query(query, newClient, (error, results) => {
-        if (error) throw error;
-        res.json({ id: results.insertId, ...newClient });
-    });
-});
+const express = require('express');
+const router = express.Router();
+const db = require('../config/database');
+
+// ... CRUD routes for clients ...
+
+module.exports = router;

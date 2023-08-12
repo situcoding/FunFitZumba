@@ -1,0 +1,10 @@
+<ng-container *ngIf="view === 'month'">
+  <mwl-calendar-month-view-component
+    [viewDate]="viewDate"
+    [events]="[]"
+    [activeDayIsOpen]="false"
+    [refresh]="viewDate"
+    (dayClicked)="dayClicked($event.day)"
+    [cellModifier]="cellModifier"
+  ></mwl-calendar-month-view-component>
+</ng-container>

@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-admin-register',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  selector: 'app-admin-registration',
+  templateUrl: './admin-registration.component.html',
+  styleUrls: ['./admin-registration.component.scss']
 })
 export class AdminRegisterComponent {
   adminData = {
