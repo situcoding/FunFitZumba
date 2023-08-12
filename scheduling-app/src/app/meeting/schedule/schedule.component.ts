@@ -25,7 +25,8 @@ export class ScheduleComponent {
   }
 
   cellModifier(cell: CalendarMonthViewDay): void {
-    cell.cssClass = this.isDayAvailable(cell.date) ? 'available' : 'unavailable';
+    const cssClass = this.isDayAvailable(cell.date) ? 'available' : 'unavailable';
+    cell.cssClass = cssClass;
   }
 
   isDayAvailable(date: Date): boolean {

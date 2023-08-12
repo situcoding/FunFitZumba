@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AvailabilityService } from '../services/availability.service';
-import { MeetingService } from '../services/meeting.service';
+import { AvailabilityService } from '/Users/sjsitu/scheduling-app/src/app/services/availability.service'
+import { MeetingService } from '/Users/sjsitu/scheduling-app/src/app/services/meeting.service'
 
 @Component({
   selector: 'app-manage-schedule',
@@ -11,16 +11,10 @@ import { MeetingService } from '../services/meeting.service';
 export class ManageScheduleComponent implements OnInit {
   availabilities: any[] = [];
   meetings: any[] = [];
-  availabilityForm: FormGroup = this.formBuilder.group({
-    date: [''],
-    time: ['']
-  });
-  meetingForm: FormGroup = this.formBuilder.group({
-    subject: [''],
-    attendeeName: [''],
-    date: [''],
-    time: ['']
-  });
+  availabilityForm!: FormGroup;
+  meetingForm!: FormGroup;
+
+  
   constructor(
     private availabilityService: AvailabilityService,
     private meetingService: MeetingService,
@@ -51,7 +45,8 @@ export class ManageScheduleComponent implements OnInit {
   }
 
   fetchAvailabilities() {
-    this.availabilityService.getAvailabilities().subscribe(data => {
+    this.availabilityService.getAvailabilities().subscribe((data: any) => {
+
       this.availabilities = data;
     });
   }

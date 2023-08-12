@@ -1,28 +1,43 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule for form handling
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { ManageScheduleComponent } from './admin/manage-schedule/manage-schedule.component'; // Replace with your actual component path
+import { ManageScheduleComponent } from './admin/manage-schedule/manage-schedule.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { CalendarMonthModule } from 'angular-calendar';
 import { AvailabilityService } from './services/availability.service';
-import { MeetingService } from './services/meeting.service'; // Import MeetingService
+import { MeetingService } from './services/meeting.service';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  { path: '', redirectTo: '/schedule', pathMatch: 'full' },
+  { path: 'schedule', component: ManageScheduleComponent }
+  // ... add more route definitions as needed
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ManageScheduleComponent, // Declare your component here
+    ManageScheduleComponent
     // Other components
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule, // Add ReactiveFormsModule to imports
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }),
+    CalendarMonthModule,
     // Other modules
   ],
   providers: [
     AvailabilityService,
-    MeetingService, // Add MeetingService to providers
+    MeetingService,
     // Other services and providers
   ],
   bootstrap: [AppComponent]
