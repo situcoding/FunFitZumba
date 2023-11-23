@@ -1,0 +1,75 @@
+package com.zumbafitness.web;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import com.zumbafitness.database.DatabaseUtil;
+
+// Add SQL-related imports here
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+@WebServlet("/InstructorRegistrationServlet")
+public class InstructorRegistrationServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    public InstructorRegistrationServlet() {
+        super();
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String firstname = request.getParameter("firstname");
+        String middlename = request.getParameter("middlename");
+        String lastname = request.getParameter("lastname");
+        String email = request.getParameter("email");
+        String mobile = request.getParameter("mobile");
+        String occupation = request.getParameter("occupation");
+        String gender = request.getParameter("gender");
+        String dob = request.getParameter("dob"); // This will be a String, you'll need to convert it to a Date
+        String username = request.getParameter("username");
+        String password = request.getParameter("password"); // Hash this password before storing
+        String qualifications = request.getParameter("qualifications");
+        String yearsOfExperience = request.getParameter("yearsOfExperience"); // This will be a String, convert it to an integer
+
+        // Perform validation on the data here
+
+        // If validation passes, interact with the database
+        try (Connection connection = DatabaseUtil.getConnection()) {
+            String sql = "INSERT INTO instructors (firstname, middlename, lastname, email_address, mobile, occupation, gender, dateofbirth, username, password, qualifications, years_of_experience) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, firstname);
+                statement.setString(2, middlename);
+                statement.setString(3, lastname);
+                statement.setString(4, email);
+                statement.setString(5, mobile);
+                statement.setString(6, occupation);
+                statement.setString(7, gender);
+                // Convert dob to Date and set
+                // Convert yearsOfExperience to int and set
+                statement.setString(8, username);
+                statement.setString(9, password); // Make sure to use a hashed password
+                statement.setString(10, qualifications);
+                statement.setString(11, yearsOfExperience);
+                // Convert yearsOfExperience to int and set
+                // ...
+
+                int rowsAffected = statement.executeUpdate();
+                if (rowsAffected > 0) {
+                    // Registration successful, redirect or forward to a success page
+                    response.sendRedirect("registration-success.html");
+                } else {
+                    // Registration failed, handle accordingly
+                    response.getWriter().write("Registration failed.");
+                }
+            }
+        } catch (SQLException e) {
+            // Handle SQL exceptions
+            throw new ServletException("Database access error occurred", e);
+        }
+        // If validation fails, handle accordingly, possibly sending back error information
+    }
+}

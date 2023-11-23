@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+/Users/sjsitu/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+1240206494.index
+812002593.index
+2564211571.index
+808970374.index
+3873088389.index
+3190337178.index
